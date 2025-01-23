@@ -16,22 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
       let isValid = true;
       const messages = [];
   
-      // Username validation
-      username.length < 3 
-        ? (isValid = false, messages.push("Username must be at least 3 characters long."))
-        : null;
+      // Validation checks
+      username.length < 3 && (isValid = false, messages.push("Username must be at least 3 characters long."));
+      (!email.includes("@") || !email.includes(".")) && (isValid = false, messages.push("Email must include '@' and '.' characters."));
+      password.length < 8 && (isValid = false, messages.push("Password must be at least 8 characters long."));
   
-      // Email validation
-      (!email.includes("@") || !email.includes(".")) 
-        ? (isValid = false, messages.push("Email must include '@' and '.' characters."))
-        : null;
-  
-      // Password validation
-      password.length < 8 
-        ? (isValid = false, messages.push("Password must be at least 8 characters long."))
-        : null;
-  
-      // Display feedback
+      // Feedback display
       feedbackDiv.style.display = "block";
       isValid
         ? (feedbackDiv.textContent = "Registration successful!", feedbackDiv.style.color = "#28a745")
